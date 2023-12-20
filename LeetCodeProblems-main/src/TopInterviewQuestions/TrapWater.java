@@ -22,6 +22,50 @@ public class TrapWater {
         return area;
     }
 
+     /* 
+     // o(n) space o(n) algo
+     public int trap(int[] height) {
+        int len = height.length;
+        int rightMax[] = new int[len];
+        rightMax[len - 1] = 0;
+        for (int i = len - 2; i >= 0; i--) {
+            rightMax[i] = Math.max(rightMax[i + 1], height[i + 1]);
+        }
+        int res = 0, leftMax = 0;
+        for (int i = 0; i < len; i++) {
+            int min = Math.min(leftMax, rightMax[i]);
+            if (min > height[i]) {
+                res += Math.abs(min - height[i]);
+            }
+            leftMax = Math.max(leftMax, height[i]);
+        }
+        return res;
+    }
+
+    // two pointer algorithm: o(1) space
+    public int trap(int[] height) {
+        int res = 0, leftMax = 0, left = 0, right = height.length - 1, rightMax = height[right];
+        while (left < right) {
+            if (height[left] < height[right]) {
+                if (height[left] >= leftMax) {
+                    leftMax = height[left];
+                } else {
+                    res += leftMax - height[left];
+                }
+                left++;
+            } else {
+                if (height[right] >= rightMax) {
+                    rightMax = height[right];
+                } else {
+                    res += rightMax - height[right];
+                }
+                right--;
+            }
+        }
+        return res;
+    }
+    */
+
     public static void main(String[] args) {
         int[] height = {4,2,0,3,2,5};
         TrapWater trapWater = new TrapWater();
